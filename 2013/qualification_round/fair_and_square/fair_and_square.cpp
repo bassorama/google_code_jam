@@ -53,6 +53,31 @@ bool check_palindrom(int input) {
   }
 }
 
+void cache_it(int input){
+  int tmp_in;
+  ifstream cache_in;
+  cache_in.open("cache", ios::in);
+  
+  while(!cache_in.eof()){
+    cache_in >> tmp_in;
+    if(tmp_in==input){
+      break;
+    } else {
+
+    }
+  }
+
+  ofstream cache_out;
+  cache_out.open("cache", ios::out);
+  if (cache_out.eof()) {
+    cache_out << input << endl;
+    cache_out.close();
+  } else {
+
+    check_cache()
+  }
+}
+
 void test_it(){
   string str_tmp;
   string tmp;
@@ -61,7 +86,7 @@ void test_it(){
   int counter;
   
   ifstream input_file;
-  input_file.open("C-large-2.in.txt", ios::in);
+  input_file.open("C-small-attempt0.in.txt", ios::in);
 
   ofstream output_file;
   output_file.open("out", ios::out);
@@ -93,6 +118,7 @@ void test_it(){
     for (int a=start; a <=end; a++){
         if(check_square(a)){
           if (check_palindrom(a))
+            cache_it(a);
             counter++;
         }
       }
